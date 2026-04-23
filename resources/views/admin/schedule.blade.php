@@ -22,31 +22,38 @@
 
 @if(empty($schedule['schedule']))
     <div class="card" style="text-align:center;color:#94a3b8;padding:3rem;">
-        No reservations found for {{ \Carbon\Carbon::create()->month($month)->format('F') }} {{ $year }}.
+        No beds booked in {{ \Carbon\Carbon::create()->month($month)->format('F') }} {{ $year }}.
     </div>
 @else
-    @foreach($schedule['schedule'] as $date => $dayReservations)
+    @foreach($schedule['schedule'] as $date => $dayBookings)
     <div class="card" style="margin-bottom:1rem;">
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.75rem;">
             <h3 style="font-size:1rem;font-weight:600;color:#1e3a5f;">
                 📅 {{ \Carbon\Carbon::parse($date)->format('l, d F Y') }}
             </h3>
-            <span style="font-size:.8rem;color:#94a3b8;">{{ count($dayReservations) }} reservation(s)</span>
+            <span style="font-size:.8rem;color:#94a3b8;">{{ count($dayBookings) }} bed(s) booked</span>
         </div>
         <table>
             <thead>
-                <tr><th>Name</th><th>Phone</th><th>Beds Req.</th><th>Type</th><th>Status</th><th></th></tr>
+                <tr>
+                    <th>Room</th>
+                    <th>Bed</th>
+                    <th>Client Name</th>
+                    <th>Phone</th>
+                    <th>National ID</th>
+                    <th style="text-align:right;">Action</th>
+                </tr>
             </thead>
             <tbody>
-                @foreach($dayReservations as $r)
+                @foreach($dayBookings as $b)
                 <tr>
-                    <td>{{ $r['full_name'] }}</td>
-                    <td>{{ $r['phone_number'] }}</td>
-                    <td>{{ $r['num_beds'] }}</td>
-                    <td>{{ ucfirst($r['reservation_type']) }}</td>
-                    <td><span class="badge badge-{{ $r['status'] }}">{{ ucfirst($r['status']) }}</span></td>
-                    <td>
-                        <a href="{{ route('admin.reservations.show', $r['id']) }}" class="btn btn-secondary btn-sm">View</a>
+                    <td style="font-weight:500;">{{ $b['room_name'] }}</td>
+                    <td style="font-weight:500;color:#0f172a;">{{ $b['bed_name'] }}</td>
+                    <td>{{ $b['client_name'] }}</td>
+                    <td>{{ $b['phone_number'] ?: '—' }}</td>
+                    <td>{{ $b['national_id'] ?: '—' }}</td>
+                    <td style="text-align:right;">
+                        <a href="{{ route('admin.bed-bookings.edit', $b['id']) }}" class="btn btn-secondary btn-sm" style="background:#f1f5f9;color:#334155;border-color:#cbd5e1;">Edit/Clear</a>
                     </td>
                 </tr>
                 @endforeach

@@ -69,4 +69,10 @@ Route::middleware('admin.web.auth')->prefix('admin')->group(function () {
     Route::get('/rooms/{room}/beds/{bed}/edit',   [AdminBedController::class, 'edit'])->name('admin.beds.edit');
     Route::patch('/rooms/{room}/beds/{bed}',      [AdminBedController::class, 'update'])->name('admin.beds.update');
     Route::delete('/rooms/{room}/beds/{bed}',     [AdminBedController::class, 'destroy'])->name('admin.beds.destroy');
+    // Bed Bookings (Manual assignments)
+    Route::get('/bed-bookings/create',            [\App\Http\Controllers\Web\AdminBedBookingController::class, 'create'])->name('admin.bed-bookings.create');
+    Route::post('/bed-bookings',                  [\App\Http\Controllers\Web\AdminBedBookingController::class, 'store'])->name('admin.bed-bookings.store');
+    Route::get('/bed-bookings/{booking}/edit',    [\App\Http\Controllers\Web\AdminBedBookingController::class, 'edit'])->name('admin.bed-bookings.edit');
+    Route::patch('/bed-bookings/{booking}',       [\App\Http\Controllers\Web\AdminBedBookingController::class, 'update'])->name('admin.bed-bookings.update');
+    Route::delete('/bed-bookings/{booking}',      [\App\Http\Controllers\Web\AdminBedBookingController::class, 'destroy'])->name('admin.bed-bookings.destroy');
 });

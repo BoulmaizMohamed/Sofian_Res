@@ -25,7 +25,6 @@ class AdminBedController extends Controller
         Bed::create([
             'room_id' => $room->id,
             'name'    => $data['name'],
-            'status'  => 'available',
         ]);
 
         // Update room capacity count
@@ -43,24 +42,13 @@ class AdminBedController extends Controller
     public function update(Request $request, Room $room, Bed $bed): RedirectResponse
     {
         $data = $request->validate([
-            'name'        => ['required', 'string', 'max:50'],
-            'status'      => ['required', 'in:available,reserved'],
-            'client_name' => ['nullable', 'string', 'max:100'],
-            'phone_number'=> ['nullable', 'string', 'max:20'],
-            'national_id' => ['nullable', 'string', 'max:50'],
+            'name' => ['required', 'string', 'max:50'],
         ]);
-
-        // If set to available, clear client info
-        if ($data['status'] === 'available') {
-            $data['client_name']  = null;
-            $data['phone_number'] = null;
-            $data['national_id']  = null;
-        }
 
         $bed->update($data);
 
         return redirect()->route('admin.rooms.show', $room->id)
-            ->with('success', "Bed \"{$bed->name}\" updated.");
+            ->with('success', "Bed \"{$bed->name}\" renamed.");
     }
 
     public function destroy(Room $room, Bed $bed): RedirectResponse

@@ -22,8 +22,6 @@
     @endif
     <div style="display:flex;gap:1.5rem;font-size:.9rem;">
         <div><strong>Total Capacity:</strong> {{ $room->capacity }} beds</div>
-        <div><strong style="color:#059669;">Available:</strong> {{ $room->available_beds_count }}</div>
-        <div><strong style="color:#dc2626;">Reserved:</strong> {{ $room->reserved_beds_count }}</div>
     </div>
 </div>
 
@@ -39,8 +37,6 @@
         <thead>
             <tr>
                 <th>Bed Name</th>
-                <th>Status</th>
-                <th>Client Info</th>
                 <th style="text-align:right;">Actions</th>
             </tr>
         </thead>
@@ -48,22 +44,6 @@
             @foreach($room->beds as $bed)
             <tr>
                 <td style="font-weight:500;">{{ $bed->name }}</td>
-                <td>
-                    @if($bed->status === 'available')
-                        <span style="background:#d1fae5;color:#065f46;padding:.2rem .6rem;border-radius:9999px;font-size:.75rem;font-weight:600;">Available</span>
-                    @else
-                        <span style="background:#fee2e2;color:#991b1b;padding:.2rem .6rem;border-radius:9999px;font-size:.75rem;font-weight:600;">Reserved</span>
-                    @endif
-                </td>
-                <td style="color:#64748b;font-size:.85rem;">
-                    @if($bed->status === 'reserved' && $bed->client_name)
-                        <strong>{{ $bed->client_name }}</strong><br>
-                        {{ $bed->phone_number }}<br>
-                        {{ $bed->national_id ? 'ID: '.$bed->national_id : '' }}
-                    @else
-                        <span style="color:#cbd5e1;">—</span>
-                    @endif
-                </td>
                 <td style="text-align:right;white-space:nowrap;">
                     <a href="{{ route('admin.beds.edit', [$room->id, $bed->id]) }}" class="btn btn-secondary btn-sm" style="margin-right:.25rem;">Edit</a>
                     <form method="POST" action="{{ route('admin.beds.destroy', [$room->id, $bed->id]) }}" onsubmit="return confirm('Delete this bed permanently?');" style="display:inline;">

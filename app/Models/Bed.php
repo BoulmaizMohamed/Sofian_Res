@@ -4,16 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Bed extends Model
 {
     protected $fillable = [
         'room_id',
         'name',
-        'status',
-        'client_name',
-        'phone_number',
-        'national_id',
     ];
 
     public function room(): BelongsTo
@@ -21,13 +18,8 @@ class Bed extends Model
         return $this->belongsTo(Room::class);
     }
 
-    public function isAvailable(): bool
+    public function bookings(): HasMany
     {
-        return $this->status === 'available';
-    }
-
-    public function isReserved(): bool
-    {
-        return $this->status === 'reserved';
+        return $this->hasMany(BedBooking::class);
     }
 }

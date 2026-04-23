@@ -13,11 +13,7 @@ class AdminRoomController extends Controller
 {
     public function index(): View
     {
-        $rooms = Room::withCount(['beds', 'beds as available_beds_count' => function ($q) {
-            $q->where('status', 'available');
-        }, 'beds as reserved_beds_count' => function ($q) {
-            $q->where('status', 'reserved');
-        }])->orderBy('name')->get();
+        $rooms = Room::withCount(['beds'])->orderBy('name')->get();
 
         return view('admin.rooms.index', compact('rooms'));
     }

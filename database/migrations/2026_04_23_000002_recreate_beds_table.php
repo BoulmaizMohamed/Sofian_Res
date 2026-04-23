@@ -12,11 +12,6 @@ return new class extends Migration
             $table->id();
             $table->foreignId('room_id')->constrained('rooms')->onDelete('cascade');
             $table->string('name'); // display name e.g. "A1", "B2", "Bed 1"
-            $table->enum('status', ['available', 'reserved'])->default('available');
-            // Client info (filled when reserved)
-            $table->string('client_name')->nullable();
-            $table->string('phone_number')->nullable();
-            $table->string('national_id')->nullable();
             $table->timestamps();
         });
     }

@@ -21,7 +21,6 @@ class BedSeeder extends Seeder
             Bed::create([
                 'room_id' => $vipRoom->id,
                 'name'    => 'Bed ' . $i,
-                'status'  => 'available'
             ]);
         }
 
@@ -36,7 +35,6 @@ class BedSeeder extends Seeder
             Bed::create([
                 'room_id' => $generalRoom->id,
                 'name'    => 'A' . $i,
-                'status'  => 'available'
             ]);
         }
 

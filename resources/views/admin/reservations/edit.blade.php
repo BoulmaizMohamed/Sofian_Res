@@ -31,7 +31,8 @@
             </select>
             @error('status') <p class="error-text">{{ $message }}</p> @enderror
         </div>
-        <div style="display:flex;gap:.75rem;margin-top:1.2rem;">
+
+        <div style="display:flex;gap:.75rem;margin-top:1.5rem;">
             <button type="submit" class="btn btn-primary">Update Status</button>
             <a href="{{ route('admin.reservations.index') }}" class="btn btn-secondary">Cancel</a>
         </div>

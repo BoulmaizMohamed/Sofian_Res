@@ -5,19 +5,22 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Reservation extends Model
+class BedBooking extends Model
 {
     protected $fillable = [
-        'full_name',
+        'bed_id',
+        'client_name',
         'phone_number',
-        'reservation_type',
-        'num_beds',
+        'national_id',
         'date',
-        'status',
-        'notes',
     ];
 
     protected $casts = [
         'date' => 'date:Y-m-d',
     ];
+
+    public function bed(): BelongsTo
+    {
+        return $this->belongsTo(Bed::class);
+    }
 }

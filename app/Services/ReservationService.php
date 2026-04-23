@@ -16,9 +16,6 @@ class ReservationService
         return Reservation::create(array_merge($data, ['status' => 'pending']));
     }
 
-    /**
-     * Update the status of a reservation.
-     */
     public function updateStatus(int $id, string $status): Reservation
     {
         $reservation = Reservation::findOrFail($id);

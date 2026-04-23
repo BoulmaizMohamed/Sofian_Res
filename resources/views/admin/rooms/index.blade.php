@@ -27,22 +27,7 @@
             <span style="font-size:.75rem;color:#94a3b8;white-space:nowrap;">{{ $room->beds_count }} bed(s)</span>
         </div>
 
-        {{-- Availability bar --}}
-        <div style="display:flex;gap:.5rem;margin-bottom:1rem;font-size:.8rem;">
-            <span style="background:#d1fae5;color:#065f46;padding:.2rem .6rem;border-radius:9999px;font-weight:600;">
-                ✅ {{ $room->available_beds_count }} available
-            </span>
-            <span style="background:#fee2e2;color:#991b1b;padding:.2rem .6rem;border-radius:9999px;font-weight:600;">
-                🔴 {{ $room->reserved_beds_count }} reserved
-            </span>
-        </div>
 
-        {{-- Progress bar --}}
-        @if($room->beds_count > 0)
-        <div style="background:#f1f5f9;border-radius:9999px;height:6px;overflow:hidden;margin-bottom:1rem;">
-            <div style="background:#ef4444;height:100%;width:{{ ($room->reserved_beds_count / $room->beds_count) * 100 }}%;border-radius:9999px;transition:width .3s;"></div>
-        </div>
-        @endif
 
         <div style="display:flex;gap:.5rem;">
             <a href="{{ route('admin.rooms.show', $room->id) }}"  class="btn btn-primary btn-sm">Manage</a>

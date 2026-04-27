@@ -53,7 +53,7 @@
         .error-text { color: #dc2626; font-size: .8rem; margin-top: .25rem; }
         .page-title { font-size: 1.4rem; font-weight: 700; margin-bottom: 1.5rem; color: #1e3a5f; }
     </style>
-    {{ $styles ?? '' }}
+    @stack('styles')
 </head>
 <body>
 
@@ -64,6 +64,7 @@
         <a href="{{ route('admin.rooms.index') }}">Rooms</a>
         <a href="{{ route('admin.reservations.index') }}">Reservations</a>
         <a href="{{ route('admin.schedule') }}">Schedule</a>
+        <a href="{{ route('admin.revenue.index') }}" style="background:rgba(16,185,129,.15);color:#d1fae5;border-radius:6px;padding:.3rem .7rem;">💰 Revenue</a>
         <form method="POST" action="{{ route('admin.logout') }}" style="margin:0;">
             @csrf
             <button type="submit" class="btn-logout">Logout</button>
@@ -80,4 +81,5 @@
 </footer>
 
 </body>
+@stack('scripts')
 </html>

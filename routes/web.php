@@ -6,6 +6,8 @@ use App\Http\Controllers\Web\AdminDashboardController;
 use App\Http\Controllers\Web\AdminReservationController;
 use App\Http\Controllers\Web\AdminRoomController;
 use App\Http\Controllers\Web\AdminScheduleController;
+use App\Http\Controllers\Web\AdminRevenueController;
+use App\Http\Controllers\Web\AdminRevenueCategoryController;
 use App\Http\Controllers\Web\PublicReservationController;
 use Illuminate\Support\Facades\Route;
 
@@ -75,4 +77,18 @@ Route::middleware('admin.web.auth')->prefix('admin')->group(function () {
     Route::get('/bed-bookings/{booking}/edit',    [\App\Http\Controllers\Web\AdminBedBookingController::class, 'edit'])->name('admin.bed-bookings.edit');
     Route::patch('/bed-bookings/{booking}',       [\App\Http\Controllers\Web\AdminBedBookingController::class, 'update'])->name('admin.bed-bookings.update');
     Route::delete('/bed-bookings/{booking}',      [\App\Http\Controllers\Web\AdminBedBookingController::class, 'destroy'])->name('admin.bed-bookings.destroy');
+
+    // Revenue Management (standalone — no link to any other table)
+    Route::get('/revenue',                [AdminRevenueController::class, 'index'])->name('admin.revenue.index');
+    Route::get('/revenue/create',         [AdminRevenueController::class, 'create'])->name('admin.revenue.create');
+    Route::post('/revenue',               [AdminRevenueController::class, 'store'])->name('admin.revenue.store');
+    Route::get('/revenue/{entry}/edit',   [AdminRevenueController::class, 'edit'])->name('admin.revenue.edit');
+    Route::patch('/revenue/{entry}',      [AdminRevenueController::class, 'update'])->name('admin.revenue.update');
+    Route::delete('/revenue/{entry}',     [AdminRevenueController::class, 'destroy'])->name('admin.revenue.destroy');
+
+    // Revenue Categories
+    Route::get('/revenue/categories',               [AdminRevenueCategoryController::class, 'index'])->name('admin.revenue.categories');
+    Route::post('/revenue/categories',              [AdminRevenueCategoryController::class, 'store'])->name('admin.revenue.categories.store');
+    Route::patch('/revenue/categories/{category}',  [AdminRevenueCategoryController::class, 'update'])->name('admin.revenue.categories.update');
+    Route::delete('/revenue/categories/{category}', [AdminRevenueCategoryController::class, 'destroy'])->name('admin.revenue.categories.destroy');
 });

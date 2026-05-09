@@ -14,10 +14,18 @@
         @csrf
         <input type="hidden" name="bed_id" value="{{ $bed->id }}">
         
-        <div class="form-group">
-            <label for="date">Booking Date <span style="color:#dc2626;">*</span></label>
-            <input type="date" id="date" name="date" value="{{ old('date', $date) }}" required>
-            @error('date') <p class="error-text">{{ $message }}</p> @enderror
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+            <div class="form-group" style="margin:0;">
+                <label for="date">Booking Date <span style="color:#dc2626;">*</span></label>
+                <input type="date" id="date" name="date" value="{{ old('date', $date) }}" required>
+                @error('date') <p class="error-text">{{ $message }}</p> @enderror
+            </div>
+            <div class="form-group" style="margin:0;">
+                <label for="num_days">Number of Days 🌙 <span style="color:#dc2626;">*</span></label>
+                <input type="number" id="num_days" name="num_days" value="{{ old('num_days', 1) }}" min="1" max="30" required>
+                @error('num_days') <p class="error-text">{{ $message }}</p> @enderror
+                <p style="font-size:.75rem;color:#94a3b8;margin-top:.25rem;">Bed will be reserved for this many consecutive days.</p>
+            </div>
         </div>
 
         <div style="background:#f8fafc;padding:1.5rem;border-radius:8px;border:1px solid #e2e8f0;margin-top:1.5rem;">

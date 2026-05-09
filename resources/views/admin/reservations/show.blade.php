@@ -15,7 +15,9 @@
             <tr><th style="color:#64748b;font-weight:500;border-bottom:1px solid #f1f5f9;">Phone</th><td>{{ $reservation->phone_number }}</td></tr>
             <tr><th style="color:#64748b;font-weight:500;border-bottom:1px solid #f1f5f9;">Type</th><td>{{ ucfirst($reservation->reservation_type) }}</td></tr>
             <tr><th style="color:#64748b;font-weight:500;border-bottom:1px solid #f1f5f9;">Beds Requested</th><td>{{ $reservation->num_beds }}</td></tr>
-            <tr><th style="color:#64748b;font-weight:500;border-bottom:1px solid #f1f5f9;">Date</th><td>{{ $reservation->date->format('d M Y') }}</td></tr>
+            <tr><th style="color:#64748b;font-weight:500;border-bottom:1px solid #f1f5f9;">Days Requested 🌙</th><td><strong>{{ $reservation->num_days }}</strong> day{{ $reservation->num_days > 1 ? 's' : '' }}</td></tr>
+            <tr><th style="color:#64748b;font-weight:500;border-bottom:1px solid #f1f5f9;">Arrival Date</th><td>{{ $reservation->date->format('d M Y') }}</td></tr>
+            <tr><th style="color:#64748b;font-weight:500;border-bottom:1px solid #f1f5f9;">Checkout Date</th><td>{{ $reservation->date->addDays($reservation->num_days)->format('d M Y') }}</td></tr>
             @if($reservation->notes)
             <tr><th style="color:#64748b;font-weight:500;border-bottom:1px solid #f1f5f9;">Notes</th><td>{{ $reservation->notes }}</td></tr>
             @endif

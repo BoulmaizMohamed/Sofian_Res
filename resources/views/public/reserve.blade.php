@@ -76,16 +76,22 @@
 
         <div class="grid-2">
             <div class="form-group">
-                <label for="date">Date</label>
+                <label for="date">Arrival Date</label>
                 <input type="date" id="date" name="date" value="{{ old('date') }}" min="{{ date('Y-m-d') }}" required>
                 @error('date') <p class="error-text">{{ $message }}</p> @enderror
             </div>
 
             <div class="form-group">
-                <label for="notes">Notes (Optional)</label>
-                <input type="text" id="notes" name="notes" value="{{ old('notes') }}" placeholder="Any special requests?">
-                @error('notes') <p class="error-text">{{ $message }}</p> @enderror
+                <label for="num_days">Number of Days 🌙</label>
+                <input type="number" id="num_days" name="num_days" value="{{ old('num_days', 1) }}" min="1" max="30" required>
+                @error('num_days') <p class="error-text">{{ $message }}</p> @enderror
             </div>
+        </div>
+
+        <div class="form-group">
+            <label for="notes">Notes (Optional)</label>
+            <input type="text" id="notes" name="notes" value="{{ old('notes') }}" placeholder="Any special requests?">
+            @error('notes') <p class="error-text">{{ $message }}</p> @enderror
         </div>
 
         <button type="submit" class="btn-submit">🏄 Confirm Reservation</button>

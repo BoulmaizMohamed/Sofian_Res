@@ -26,20 +26,39 @@ class AdminBedBookingController extends Controller
         $data = $request->validate([
             'bed_id'       => ['required', 'exists:beds,id'],
             'date'         => ['required', 'date'],
+            'num_days'     => ['required', 'integer', 'min:1', 'max:30'],
             'client_name'  => ['required', 'string', 'max:255'],
             'phone_number' => ['nullable', 'string', 'max:50'],
             'national_id'  => ['nullable', 'string', 'max:50'],
         ]);
 
-        // Prevent double booking
-        if (BedBooking::where('bed_id', $data['bed_id'])->where('date', $data['date'])->exists()) {
-            return back()->withInput()->withErrors(['date' => 'This bed is already booked on this date.']);
+        $startDate = \Carbon\Carbon::parse($data['date']);
+        $numDays   = (int) $data['num_days'];
+
+        // Check ALL days in the range are free before creating anything
+        for ($i = 0; $i < $numDays; $i++) {
+            $checkDate = $startDate->copy()->addDays($i)->toDateString();
+            if (BedBooking::where('bed_id', $data['bed_id'])->where('date', $checkDate)->exists()) {
+                return back()->withInput()->withErrors([
+                    'date' => "This bed is already booked on {$checkDate}. No bookings were created.",
+                ]);
+            }
         }
 
-        BedBooking::create($data);
+        // Create one booking record per day
+        for ($i = 0; $i < $numDays; $i++) {
+            BedBooking::create([
+                'bed_id'       => $data['bed_id'],
+                'date'         => $startDate->copy()->addDays($i)->toDateString(),
+                'client_name'  => $data['client_name'],
+                'phone_number' => $data['phone_number'] ?? null,
+                'national_id'  => $data['national_id'] ?? null,
+            ]);
+        }
 
+        $label = $numDays === 1 ? '1 day' : "{$numDays} days";
         return redirect()->route('admin.dashboard', ['date' => $data['date']])
-            ->with('success', 'Bed assigned successfully.');
+            ->with('success', "Bed assigned for {$label} starting {$data['date']}.");
     }
 
     public function edit(BedBooking $booking): View

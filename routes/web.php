@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 */
 
-Route::get('/', fn () => redirect()->route('reservation.create'));
+Route::get('/', fn () => view('home'))->name('home');
 
 Route::get('/reserve',         [PublicReservationController::class, 'create'])->name('reservation.create');
 Route::post('/reserve',        [PublicReservationController::class, 'store'])->name('reservation.store');

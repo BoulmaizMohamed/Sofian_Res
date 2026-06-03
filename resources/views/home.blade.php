@@ -8,20 +8,21 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
   :root {
-    --blue-deep: #0B4F7A;
-    --blue-ocean: #1199CC;
-    --cyan-sky: #39C4E0;
-    --green-nature: #4F8F3A;
-    --green-palm: #2F6D45;
-    --yellow-sun: #F6B21A;
-    --orange-warm: #F28C1B;
-    --white: #FFFFFF;
-    --light-bg: #F5F9FC;
-    --text-dark: #0D2A3A;
-    --text-mid: #2C4D60;
-    --text-soft: #6B8FA3;
-    --shadow-card: 0 8px 40px rgba(11,79,122,0.13);
-    --shadow-hover: 0 20px 60px rgba(17,153,204,0.22);
+    --blue-deep:    #0B3C5D;   /* palette: deep navy       */
+    --blue-ocean:   #00A6B2;   /* palette: teal            */
+    --cyan-sky:     #3ec8d3;   /* teal highlight (lighter) */
+    --green-nature: #3EB06A;   /* palette: medium green    */
+    --green-palm:   #1D5D30;   /* palette: forest green    */
+    --yellow-sun:   #FDB813;   /* palette: golden amber    */
+    --orange-warm:  #e8a010;   /* amber warm variant       */
+    --white:        #FFFFFF;   /* palette: white           */
+    --light-bg:     #EDF8FA;   /* powder blue tint         */
+    --powder-blue:  #C1E3ED;   /* palette: powder blue     */
+    --text-dark:    #0B3C5D;
+    --text-mid:     #1D5D30;
+    --text-soft:    #5a8fa5;
+    --shadow-card:  0 8px 40px rgba(11,60,93,0.13);
+    --shadow-hover: 0 20px 60px rgba(0,166,178,0.22);
     --radius-xl: 24px;
     --radius-lg: 16px;
     --radius-md: 12px;
@@ -42,7 +43,7 @@
 
   /* ─── SCROLLBAR ─── */
   ::-webkit-scrollbar { width: 7px; }
-  ::-webkit-scrollbar-track { background: var(--light-bg); }
+  ::-webkit-scrollbar-track { background: var(--powder-blue); }
   ::-webkit-scrollbar-thumb { background: var(--blue-ocean); border-radius: 4px; }
 
   /* ─── NAVBAR ─── */
@@ -51,13 +52,13 @@
     padding: 0 5%;
     display: flex; align-items: center; justify-content: space-between;
     height: 74px;
-    background: rgba(11,79,122,0.12);
+    background: rgba(11,60,93,0.12);
     backdrop-filter: blur(18px);
-    border-bottom: 1px solid rgba(255,255,255,0.12);
+    border-bottom: 1px solid rgba(193,227,237,0.18);
     transition: var(--transition);
   }
   nav.scrolled {
-    background: rgba(11,79,122,0.97);
+    background: rgba(11,60,93,0.97);
     box-shadow: 0 4px 30px rgba(0,0,0,0.25);
   }
   .nav-logo {
@@ -101,22 +102,21 @@
 
   /* ─── HERO ─── */
   #hero {
-    min-height: 100vh; position: relative; display: flex;
+    height: 100vh; min-height: 580px;
+    position: relative; display: flex;
     align-items: center; overflow: hidden;
   }
   .hero-bg {
     position: absolute; inset: 0; z-index: 0;
-    background:
-      linear-gradient(160deg,
-        rgba(11,79,122,0.88) 0%,
-        rgba(17,153,204,0.65) 35%,
-        rgba(57,196,224,0.45) 60%,
-        rgba(47,109,69,0.7) 100%),
-      url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1920&q=90') center/cover no-repeat;
+    background: linear-gradient(145deg,
+      #0B3C5D 0%,
+      #0e4e6e 30%,
+      #00626b 65%,
+      #1D5D30 100%);
   }
   .hero-bg::after {
     content: '';
-    position: absolute; bottom: 0; left: 0; right: 0; height: 160px;
+    position: absolute; bottom: 0; left: 0; right: 0; height: 80px;
     background: linear-gradient(to top, var(--white), transparent);
   }
   /* Animated particles */
@@ -137,9 +137,10 @@
     100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
   }
   .hero-content {
-    position: relative; z-index: 2;
-    max-width: 1200px; margin: 0 auto; padding: 120px 5% 80px;
-    display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+    position: relative; z-index: 2; width: 100%;
+    max-width: 1280px; margin: 0 auto;
+    padding: calc(74px + 14px) 5% 14px;
+    display: grid; grid-template-columns: 1fr 1.4fr; gap: 40px; align-items: center;
   }
   .hero-text { animation: slideInRight 1s ease 0.2s both; }
   @keyframes slideInRight {
@@ -149,56 +150,112 @@
   .hero-badge {
     display: inline-flex; align-items: center; gap: 8px;
     background: rgba(246,178,26,0.2); border: 1px solid rgba(246,178,26,0.5);
-    color: var(--yellow-sun); padding: 6px 16px; border-radius: 50px;
-    font-size: 13px; font-weight: 700; margin-bottom: 24px;
+    color: var(--yellow-sun); padding: 5px 14px; border-radius: 50px;
+    font-size: 12px; font-weight: 700; margin-bottom: 12px;
     backdrop-filter: blur(8px);
   }
   .hero-badge i { font-size: 12px; }
   .hero-title {
-    font-size: clamp(32px, 4.5vw, 62px);
-    font-weight: 900; color: white; line-height: 1.25;
-    margin-bottom: 20px; text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+    font-size: clamp(24px, 3.2vw, 46px);
+    font-weight: 900; color: white; line-height: 1.2;
+    margin-bottom: 10px; text-shadow: 0 2px 20px rgba(0,0,0,0.3);
   }
   .hero-title .accent { color: var(--cyan-sky); }
   .hero-subtitle {
-    font-size: clamp(15px, 1.6vw, 18px);
-    color: rgba(255,255,255,0.85); line-height: 1.8; margin-bottom: 38px;
+    font-size: clamp(13px, 1.3vw, 15px);
+    color: rgba(255,255,255,0.85); line-height: 1.7; margin-bottom: 18px;
     font-weight: 400;
   }
   .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; }
   .btn-primary {
     background: linear-gradient(135deg, var(--yellow-sun), var(--orange-warm));
-    color: white; padding: 15px 32px; border-radius: 14px;
-    font-size: 16px; font-weight: 800; border: none; cursor: pointer;
-    text-decoration: none; display: inline-flex; align-items: center; gap: 9px;
+    color: white; padding: 11px 24px; border-radius: 12px;
+    font-size: 14px; font-weight: 800; border: none; cursor: pointer;
+    text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
     box-shadow: 0 8px 30px rgba(246,178,26,0.4);
     transition: var(--transition);
   }
   .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(246,178,26,0.55); }
   .btn-secondary {
     background: rgba(255,255,255,0.12); backdrop-filter: blur(10px);
-    color: white; padding: 15px 32px; border-radius: 14px;
-    font-size: 16px; font-weight: 700; border: 2px solid rgba(255,255,255,0.3);
-    cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 9px;
+    color: white; padding: 11px 24px; border-radius: 12px;
+    font-size: 14px; font-weight: 700; border: 2px solid rgba(255,255,255,0.3);
+    cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
     transition: var(--transition);
   }
   .btn-secondary:hover { background: rgba(255,255,255,0.22); transform: translateY(-3px); }
   .hero-stats {
-    display: flex; gap: 28px; margin-top: 44px;
+    display: flex; gap: 20px; margin-top: 18px;
   }
   .stat { text-align: center; }
-  .stat-num { font-size: 32px; font-weight: 900; color: var(--yellow-sun); line-height: 1; }
-  .stat-label { font-size: 12px; color: rgba(255,255,255,0.75); margin-top: 4px; font-weight: 500; }
+  .stat-num { font-size: 26px; font-weight: 900; color: var(--yellow-sun); line-height: 1; }
+  .stat-label { font-size: 11px; color: rgba(255,255,255,0.75); margin-top: 3px; font-weight: 500; }
   .hero-visual { animation: slideInLeft 1s ease 0.4s both; }
   @keyframes slideInLeft {
     from { opacity: 0; transform: translateX(-50px); }
     to { opacity: 1; transform: translateX(0); }
   }
   .hero-logo-card {
-    background: rgba(255,255,255,0.1); backdrop-filter: blur(20px);
-    border: 1px solid rgba(255,255,255,0.2); border-radius: 28px;
-    padding: 40px; text-align: center;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+    background: rgba(0,0,0,0.35); backdrop-filter: blur(16px);
+    border: 1px solid rgba(255,255,255,0.18); border-radius: 20px;
+    padding: 12px; text-align: center;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+    overflow: hidden;
+  }
+  /* ─── Video Player Card ─── */
+  .hero-video-card {
+    width: 100%; aspect-ratio: 16/10;
+    border-radius: 12px; overflow: hidden;
+    position: relative; background: #000;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.45);
+  }
+  .hero-video-card video {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+  }
+  /* Central play/pause click zone */
+  .vid-click-zone {
+    position: absolute; inset: 0 0 52px 0;
+    cursor: pointer; z-index: 2;
+  }
+  /* Control bar */
+  .vid-controls {
+    position: absolute; bottom: 0; left: 0; right: 0; height: 52px;
+    background: linear-gradient(to top, rgba(0,0,0,0.85), rgba(0,0,0,0.0));
+    display: flex; align-items: center; gap: 10px; padding: 0 14px;
+    z-index: 3;
+  }
+  .vid-btn {
+    width: 34px; height: 34px; border-radius: 50%;
+    background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.25);
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; color: white; font-size: 14px;
+    transition: background 0.2s, transform 0.15s;
+    flex-shrink: 0;
+  }
+  .vid-btn:hover { background: rgba(253,184,19,0.7); transform: scale(1.1); }
+  .vid-progress {
+    flex: 1; height: 4px; background: rgba(255,255,255,0.25);
+    border-radius: 4px; cursor: pointer; position: relative; overflow: hidden;
+  }
+  .vid-progress-fill {
+    height: 100%; width: 0%; background: var(--yellow-sun);
+    border-radius: 4px; transition: width 0.1s linear; pointer-events: none;
+  }
+  .vid-time {
+    font-size: 11px; color: rgba(255,255,255,0.75); font-weight: 600;
+    white-space: nowrap; flex-shrink: 0;
+  }
+  /* Big play icon on pause */
+  .vid-big-play {
+    position: absolute; inset: 0 0 52px 0;
+    display: flex; align-items: center; justify-content: center;
+    pointer-events: none; z-index: 2;
+    opacity: 0; transition: opacity 0.3s;
+  }
+  .vid-big-play.show { opacity: 1; }
+  .vid-big-play i {
+    font-size: 64px; color: rgba(255,255,255,0.92);
+    filter: drop-shadow(0 2px 12px rgba(0,0,0,0.6));
   }
   .logo-main {
     width: 160px; height: 160px; margin: 0 auto 20px;
@@ -288,7 +345,7 @@
   #about::before {
     content: ''; position: absolute; top: -80px; right: -80px;
     width: 400px; height: 400px; border-radius: 50%;
-    background: radial-gradient(circle, rgba(57,196,224,0.12), transparent);
+    background: radial-gradient(circle, rgba(0,166,178,0.12), transparent);
   }
   .about-grid {
     max-width: 1200px; margin: 0 auto;
@@ -304,9 +361,10 @@
   .about-img-frame {
     width: 100%; height: 480px; border-radius: var(--radius-xl);
     overflow: hidden; box-shadow: var(--shadow-card);
-    background:
-      linear-gradient(160deg, rgba(11,79,122,0.5), rgba(47,109,69,0.5)),
-      url('https://images.unsplash.com/photo-1501854140801-50d01698950b?w=800&q=85') center/cover;
+  }
+  .about-img-frame img {
+    width: 100%; height: 100%; object-fit: cover;
+    display: block;
   }
   .about-float-card {
     position: absolute; bottom: -25px; left: -25px;
@@ -340,8 +398,8 @@
   .feature-card {
     background: white; border-radius: var(--radius-lg); padding: 20px;
     display: flex; align-items: center; gap: 14px;
-    box-shadow: 0 4px 20px rgba(11,79,122,0.08);
-    border: 1px solid rgba(57,196,224,0.15);
+    box-shadow: 0 4px 20px rgba(11,60,93,0.08);
+    border: 1px solid rgba(0,166,178,0.15);
     transition: var(--transition);
   }
   .feature-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); border-color: var(--cyan-sky); }
@@ -366,7 +424,7 @@
   .service-card {
     border-radius: var(--radius-xl); padding: 36px 28px;
     background: var(--light-bg);
-    border: 1px solid rgba(57,196,224,0.12);
+    border: 1px solid rgba(0,166,178,0.15);
     transition: var(--transition); cursor: default; position: relative;
     overflow: hidden;
   }
@@ -414,7 +472,7 @@
     max-width: 1200px; margin: 0 auto;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(2, 220px);
+    grid-template-rows: repeat(2, 240px);
     gap: 14px;
   }
   .gallery-item {
@@ -425,13 +483,19 @@
   .gallery-item:nth-child(4) { grid-column: span 2; }
   .gallery-bg {
     width: 100%; height: 100%;
+    object-fit: cover; display: block;
+    transition: transform 0.5s ease;
+  }
+  .gallery-bg-div {
+    width: 100%; height: 100%;
     background-size: cover; background-position: center;
     transition: transform 0.5s ease;
   }
-  .gallery-item:hover .gallery-bg { transform: scale(1.07); }
+  .gallery-item:hover .gallery-bg,
+  .gallery-item:hover .gallery-bg-div { transform: scale(1.07); }
   .gallery-overlay {
     position: absolute; inset: 0;
-    background: linear-gradient(to top, rgba(11,79,122,0.7), transparent 60%);
+    background: linear-gradient(to top, rgba(11,79,122,0.75), transparent 60%);
     opacity: 0; transition: var(--transition);
     display: flex; align-items: flex-end; padding: 16px;
   }
@@ -444,31 +508,45 @@
     font-size: 18px; color: var(--blue-deep); transition: var(--transition);
   }
   .gallery-item:hover .gallery-zoom { transform: translate(-50%, -50%) scale(1); }
+  /* Video badge */
+  .gallery-video-badge {
+    position: absolute; top: 12px; right: 12px;
+    background: rgba(246,178,26,0.9); color: white;
+    padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 700;
+    display: flex; align-items: center; gap: 5px;
+    backdrop-filter: blur(6px);
+  }
 
   /* Lightbox */
   .lightbox {
     position: fixed; inset: 0; z-index: 9999;
-    background: rgba(0,0,0,0.92); display: none;
+    background: rgba(0,0,0,0.94); display: none;
     align-items: center; justify-content: center;
     animation: fadeIn 0.3s ease;
   }
   .lightbox.open { display: flex; }
   @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
   .lightbox-content {
-    max-width: 90vw; max-height: 85vh; position: relative;
+    max-width: 90vw; max-height: 88vh; position: relative;
+    display: flex; align-items: center; justify-content: center;
   }
   .lightbox-img {
-    width: 100%; height: 100%; object-fit: contain;
-    border-radius: 12px;
-    background-size: cover; background-position: center;
-    min-width: 60vw; min-height: 60vh;
+    max-width: 88vw; max-height: 84vh; object-fit: contain;
+    border-radius: 14px; display: block;
+    box-shadow: 0 20px 80px rgba(0,0,0,0.6);
+  }
+  .lightbox-video {
+    max-width: 88vw; max-height: 84vh;
+    border-radius: 14px; display: block;
+    box-shadow: 0 20px 80px rgba(0,0,0,0.6);
+    outline: none;
   }
   .lightbox-close {
     position: absolute; top: -18px; left: -18px;
-    width: 40px; height: 40px; background: white; border-radius: 50%;
+    width: 42px; height: 42px; background: white; border-radius: 50%;
     display: flex; align-items: center; justify-content: center;
     font-size: 18px; cursor: pointer; color: var(--blue-deep);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3); z-index: 2;
   }
 
   /* ─── RESERVATION ─── */
@@ -480,7 +558,7 @@
     content: '';
     position: absolute; top: -100px; left: -100px;
     width: 500px; height: 500px; border-radius: 50%;
-    background: radial-gradient(circle, rgba(57,196,224,0.2), transparent);
+    background: radial-gradient(circle, rgba(0,166,178,0.2), transparent);
   }
   #reservation .section-title { color: white; }
   #reservation .section-subtitle { color: rgba(255,255,255,0.75); }
@@ -541,7 +619,7 @@
   .testimonial-card {
     min-width: 350px; background: var(--light-bg);
     border-radius: var(--radius-xl); padding: 32px;
-    border: 1px solid rgba(57,196,224,0.15);
+    border: 1px solid rgba(0,166,178,0.15);
     box-shadow: var(--shadow-card);
     flex-shrink: 0; transition: var(--transition);
   }
@@ -581,7 +659,7 @@
   .contact-card {
     background: white; border-radius: var(--radius-lg); padding: 22px 24px;
     display: flex; align-items: center; gap: 18px;
-    box-shadow: var(--shadow-card); border: 1px solid rgba(57,196,224,0.1);
+    box-shadow: var(--shadow-card); border: 1px solid rgba(0,166,178,0.12);
     transition: var(--transition);
   }
   .contact-card:hover { transform: translateX(-8px); box-shadow: var(--shadow-hover); }
@@ -615,14 +693,14 @@
   }
   .map-placeholder {
     width: 100%; height: 100%;
-    background: linear-gradient(160deg, #e8f4f8, #cce8f4);
+    background: linear-gradient(160deg, var(--powder-blue), #a8d8e8);
     display: flex; align-items: center; justify-content: center;
     flex-direction: column; gap: 16px; position: relative; overflow: hidden;
   }
   .map-grid {
     position: absolute; inset: 0;
-    background-image: linear-gradient(rgba(17,153,204,0.08) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(17,153,204,0.08) 1px, transparent 1px);
+    background-image: linear-gradient(rgba(0,166,178,0.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,166,178,0.08) 1px, transparent 1px);
     background-size: 40px 40px;
   }
   .map-roads {
@@ -660,7 +738,7 @@
 
   /* ─── FOOTER ─── */
   footer {
-    background: linear-gradient(160deg, #071e2e, var(--blue-deep));
+    background: linear-gradient(160deg, #061928, var(--blue-deep));
     padding: 70px 5% 30px; color: rgba(255,255,255,0.8);
   }
   .footer-grid {
@@ -692,7 +770,7 @@
     text-decoration: none; transition: var(--transition);
     border: 1px solid rgba(255,255,255,0.1);
   }
-  .footer-social a:hover { background: var(--blue-ocean); color: white; transform: translateY(-3px); }
+  .footer-social a:hover { background: var(--blue-ocean); border-color: var(--blue-ocean); color: white; transform: translateY(-3px); }
   .footer-col-title { font-size: 16px; font-weight: 800; color: white; margin-bottom: 20px; position: relative; padding-bottom: 10px; }
   .footer-col-title::after {
     content: ''; position: absolute; bottom: 0; right: 0;
@@ -759,10 +837,10 @@
   /* ─── NAV MOBILE MENU ─── */
   .nav-mobile {
     position: fixed; top: 74px; right: 0; left: 0;
-    background: rgba(11,79,122,0.97); backdrop-filter: blur(20px);
+    background: rgba(11,60,93,0.97); backdrop-filter: blur(20px);
     padding: 20px; z-index: 999;
     display: none; flex-direction: column; gap: 4px;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
+    border-bottom: 1px solid rgba(193,227,237,0.15);
   }
   .nav-mobile.open { display: flex; }
   .nav-mobile a {
@@ -850,25 +928,51 @@
     </div>
     <div class="hero-visual">
       <div class="hero-logo-card">
-        <div class="logo-main">
-          <div class="logo-sun"></div>
-          <i class="fa-solid fa-mountain" style="position:relative;z-index:2;font-size:40px;color:rgba(255,255,255,0.9);"></i>
-          <div class="logo-waves" style="z-index:3;">
-            <svg viewBox="0 0 100 20" preserveAspectRatio="none" height="20" width="100%">
-              <path d="M0,10 Q25,0 50,10 Q75,20 100,10 L100,20 L0,20 Z" fill="rgba(255,255,255,0.2)"/>
-            </svg>
+        <div class="hero-video-card" id="heroVideoWrap">
+          <video id="heroVid" loop playsinline
+                 poster="{{ asset('media/WhatsApp Image 2026-06-02 at 11.08.17.jpeg') }}">
+            <source src="{{ asset('media/WhatsApp Video 2026-05-31 at 17.35.40.mp4') }}" type="video/mp4">
+          </video>
+
+          <!-- Click zone (centre) to toggle play/pause -->
+          <div class="vid-click-zone" onclick="toggleHeroVid()"></div>
+
+          <!-- Big pause icon overlay -->
+          <div class="vid-big-play show" id="vidBigPlay">
+            <i class="fa-solid fa-circle-play"></i>
+          </div>
+
+          <!-- Control bar -->
+          <div class="vid-controls">
+            <!-- Play / Pause -->
+            <div class="vid-btn" onclick="toggleHeroVid()" title="تشغيل / إيقاف">
+              <i class="fa-solid fa-play" id="vidPlayIcon"></i>
+            </div>
+
+            <!-- Progress bar -->
+            <div class="vid-progress" id="vidProgress" onclick="vidSeek(event)">
+              <div class="vid-progress-fill" id="vidFill"></div>
+            </div>
+
+            <!-- Time -->
+            <div class="vid-time" id="vidTime">0:00</div>
+
+            <!-- Mute / Unmute -->
+            <div class="vid-btn" onclick="toggleMute()" title="كتم / تشغيل الصوت">
+              <i class="fa-solid fa-volume-xmark" id="vidMuteIcon"></i>
+            </div>
+
+            <!-- Fullscreen -->
+            <div class="vid-btn" onclick="goFullscreen()" title="ملء الشاشة">
+              <i class="fa-solid fa-expand"></i>
+            </div>
           </div>
         </div>
-        <div class="logo-name-big">المخيم الصيفي تازة</div>
+        <div class="logo-name-big" style="margin-top:14px;font-size:18px;">المخيم الصيفي تازة</div>
         <div class="logo-name-sub">Summer Camp Taza · الجزائر</div>
-        <div style="display:flex;gap:10px;justify-content:center;margin-top:20px;flex-wrap:wrap;">
-          <span style="background:rgba(57,196,224,0.2);color:var(--cyan-sky);padding:5px 12px;border-radius:20px;font-size:12px;font-weight:700;"><i class="fa-solid fa-mountain" style="margin-left:5px;"></i>جبال</span>
-          <span style="background:rgba(79,143,58,0.2);color:#6fcf4a;padding:5px 12px;border-radius:20px;font-size:12px;font-weight:700;"><i class="fa-solid fa-tree" style="margin-left:5px;"></i>طبيعة</span>
-          <span style="background:rgba(246,178,26,0.2);color:var(--yellow-sun);padding:5px 12px;border-radius:20px;font-size:12px;font-weight:700;"><i class="fa-solid fa-sun" style="margin-left:5px;"></i>شمس</span>
-          <span style="background:rgba(17,153,204,0.2);color:var(--blue-ocean);padding:5px 12px;border-radius:20px;font-size:12px;font-weight:700;"><i class="fa-solid fa-water" style="margin-left:5px;"></i>بحر</span>
-        </div>
       </div>
     </div>
+
   </div>
   <div class="hero-scroll">
     <span>اكتشف</span>
@@ -882,7 +986,9 @@
 <section id="about">
   <div class="about-grid">
     <div class="about-img-wrap reveal">
-      <div class="about-img-frame"></div>
+      <div class="about-img-frame">
+        <img src="{{ asset('media/WhatsApp Image 2026-06-02 at 11.21.01.jpeg') }}" alt="مخيم تازة الصيفي">
+      </div>
       <div class="about-float-card">
         <div class="about-float-icon"><i class="fa-solid fa-award"></i></div>
         <div>
@@ -991,34 +1097,34 @@
     <p class="section-subtitle reveal reveal-delay-2">نماذج من اللحظات الجميلة التي عاشها زوارنا في رحاب مخيم تازة الصيفي</p>
   </div>
   <div class="gallery-grid reveal">
-    <div class="gallery-item" onclick="openLightbox(this)">
-      <div class="gallery-bg" style="background:linear-gradient(160deg,rgba(11,79,122,0.4),rgba(47,109,69,0.4)),url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=85') center/cover;height:100%;"></div>
-      <div class="gallery-overlay"><div class="gallery-overlay-text">قمم الجبال الشاهقة</div></div>
+    <!-- Image 1 — spans 2 cols & 2 rows -->
+    <div class="gallery-item" onclick="openLightbox(this)" data-type="image" data-src="{{ asset('media/WhatsApp Image 2026-06-02 at 11.08.17.jpeg') }}">
+      <img class="gallery-bg" src="{{ asset('media/WhatsApp Image 2026-06-02 at 11.08.17.jpeg') }}" alt="المخيم الصيفي تازة" style="height:100%;">
+      <div class="gallery-overlay"><div class="gallery-overlay-text">المخيم الصيفي تازة</div></div>
       <div class="gallery-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
     </div>
-    <div class="gallery-item" onclick="openLightbox(this)">
-      <div class="gallery-bg" style="background:linear-gradient(160deg,rgba(17,153,204,0.3),rgba(57,196,224,0.3)),url('https://images.unsplash.com/photo-1506929562872-bb421503ef21?w=800&q=85') center/cover;height:100%;"></div>
-      <div class="gallery-overlay"><div class="gallery-overlay-text">شواطئ نقية وهادئة</div></div>
+    <!-- Image 2 -->
+    <div class="gallery-item" onclick="openLightbox(this)" data-type="image" data-src="{{ asset('media/WhatsApp Image 2026-06-02 at 11.21.01.jpeg') }}">
+      <img class="gallery-bg" src="{{ asset('media/WhatsApp Image 2026-06-02 at 11.21.01.jpeg') }}" alt="مناظر طبيعية" style="height:100%;">
+      <div class="gallery-overlay"><div class="gallery-overlay-text">مناظر طبيعية خلابة</div></div>
       <div class="gallery-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
     </div>
-    <div class="gallery-item" onclick="openLightbox(this)">
-      <div class="gallery-bg" style="background:linear-gradient(160deg,rgba(79,143,58,0.3),rgba(47,109,69,0.4)),url('https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=800&q=85') center/cover;height:100%;"></div>
-      <div class="gallery-overlay"><div class="gallery-overlay-text">التخييم في الطبيعة</div></div>
+    <!-- Image 3 -->
+    <div class="gallery-item" onclick="openLightbox(this)" data-type="image" data-src="{{ asset('media/WhatsApp Image 2026-06-02 at 11.21.35.jpeg') }}">
+      <img class="gallery-bg" src="{{ asset('media/WhatsApp Image 2026-06-02 at 11.21.35.jpeg') }}" alt="الأنشطة" style="height:100%;">
+      <div class="gallery-overlay"><div class="gallery-overlay-text">لحظات لا تُنسى</div></div>
       <div class="gallery-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
     </div>
-    <div class="gallery-item" onclick="openLightbox(this)">
-      <div class="gallery-bg" style="background:linear-gradient(160deg,rgba(246,178,26,0.3),rgba(242,140,27,0.3)),url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=85') center/cover;height:100%;"></div>
-      <div class="gallery-overlay"><div class="gallery-overlay-text">غروب الشمس على البحر</div></div>
+    <!-- Image 4 — spans 2 cols -->
+    <div class="gallery-item" onclick="openLightbox(this)" data-type="image" data-src="{{ asset('media/WhatsApp Image 2026-06-02 at 11.28.38.jpeg') }}">
+      <img class="gallery-bg" src="{{ asset('media/WhatsApp Image 2026-06-02 at 11.28.38.jpeg') }}" alt="الطبيعة" style="height:100%;">
+      <div class="gallery-overlay"><div class="gallery-overlay-text">عالم من الجمال الطبيعي</div></div>
       <div class="gallery-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
     </div>
-    <div class="gallery-item" onclick="openLightbox(this)">
-      <div class="gallery-bg" style="background:linear-gradient(160deg,rgba(11,79,122,0.3),rgba(57,196,224,0.3)),url('https://images.unsplash.com/photo-1602002418082-a4443e081dd1?w=800&q=85') center/cover;height:100%;"></div>
-      <div class="gallery-overlay"><div class="gallery-overlay-text">الأنشطة المائية</div></div>
-      <div class="gallery-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
-    </div>
-    <div class="gallery-item" onclick="openLightbox(this)">
-      <div class="gallery-bg" style="background:linear-gradient(160deg,rgba(47,109,69,0.3),rgba(79,143,58,0.3)),url('https://images.unsplash.com/photo-1448375240586-882707db888b?w=800&q=85') center/cover;height:100%;"></div>
-      <div class="gallery-overlay"><div class="gallery-overlay-text">الغابات الخضراء</div></div>
+    <!-- Image 5 -->
+    <div class="gallery-item" onclick="openLightbox(this)" data-type="image" data-src="{{ asset('media/WhatsApp Image 2026-06-02 at 11.30.10.jpeg') }}">
+      <img class="gallery-bg" src="{{ asset('media/WhatsApp Image 2026-06-02 at 11.30.10.jpeg') }}" alt="الترفيه" style="height:100%;">
+      <div class="gallery-overlay"><div class="gallery-overlay-text">الترفيه والمتعة</div></div>
       <div class="gallery-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
     </div>
   </div>
@@ -1031,9 +1137,12 @@
 
 <!-- Lightbox -->
 <div class="lightbox" id="lightbox" onclick="closeLightbox()">
-  <div class="lightbox-content">
+  <div class="lightbox-content" onclick="event.stopPropagation()">
     <div class="lightbox-close" onclick="closeLightbox()"><i class="fa-solid fa-xmark"></i></div>
-    <div id="lightboxImg" class="lightbox-img"></div>
+    <img id="lightboxImg" class="lightbox-img" src="" alt="" style="display:none;">
+    <video id="lightboxVideo" class="lightbox-video" controls style="display:none;">
+      <source id="lightboxVideoSrc" src="" type="video/mp4">
+    </video>
   </div>
 </div>
 
@@ -1212,16 +1321,16 @@
         <div class="contact-icon blue"><i class="fa-solid fa-phone"></i></div>
         <div>
           <div class="contact-label">اتصل بنا</div>
-          <div class="contact-value">213+ 555 000 123</div>
-          <div class="contact-value" style="font-size:13px;color:var(--text-soft);">213+ 555 000 456</div>
+          <div class="contact-value">0551920005</div>
+          <div class="contact-value" style="font-size:13px;color:var(--text-soft);">0551920005</div>
         </div>
       </div>
       <div class="contact-card reveal reveal-delay-1">
         <div class="contact-icon green"><i class="fa-solid fa-envelope"></i></div>
         <div>
           <div class="contact-label">البريد الإلكتروني</div>
-          <div class="contact-value">info@tazacamp.dz</div>
-          <div class="contact-value" style="font-size:13px;color:var(--text-soft);">reservation@tazacamp.dz</div>
+          <div class="contact-value">hallissoufiane@gmail.com</div>
+          <div class="contact-value" style="font-size:13px;color:var(--text-soft);">hallissoufiane@gmail.com</div>
         </div>
       </div>
       <div class="contact-card reveal reveal-delay-2">
@@ -1243,7 +1352,7 @@
       <div class="reveal reveal-delay-4">
         <div style="font-size:14px;font-weight:700;color:var(--blue-deep);margin-bottom:14px;">تابعونا على وسائل التواصل</div>
         <div class="social-links">
-          <a href="#" class="social-btn fb"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="https://www.facebook.com/profile.php?id=61575660224278" class="social-btn fb"><i class="fa-brands fa-facebook-f"></i></a>
           <a href="#" class="social-btn ig"><i class="fa-brands fa-instagram"></i></a>
           <a href="#" class="social-btn tw"><i class="fa-brands fa-twitter"></i></a>
           <a href="#" class="social-btn yt"><i class="fa-brands fa-youtube"></i></a>
@@ -1251,30 +1360,21 @@
         </div>
       </div>
     </div>
-    <div class="map-container reveal reveal-delay-2">
-      <div class="map-placeholder">
-        <div class="map-grid"></div>
-        <div class="map-roads">
-          <div class="map-road-h" style="top:30%;"></div>
-          <div class="map-road-h" style="top:55%;"></div>
-          <div class="map-road-h" style="top:75%;"></div>
-          <div class="map-road-v" style="right:35%;"></div>
-          <div class="map-road-v" style="right:60%;"></div>
-        </div>
-        <!-- Mountain shapes -->
-        <svg style="position:absolute;bottom:30%;left:0;right:0;opacity:0.12;" viewBox="0 0 400 80" xmlns="http://www.w3.org/2000/svg">
-          <path d="M0,80 L60,20 L120,60 L180,10 L240,50 L300,25 L360,55 L400,15 L400,80 Z" fill="#2F6D45"/>
-        </svg>
-        <div class="map-pin">
-          <i class="fa-solid fa-tent"></i>
-        </div>
-        <div class="map-label">المخيم الصيفي تازة</div>
-        <div class="map-sublabel">ولاية جيجل — الجزائر</div>
-        <div style="position:absolute;bottom:20px;left:50%;transform:translateX(-50%);z-index:3;">
-          <a href="#" style="background:var(--blue-ocean);color:white;padding:10px 22px;border-radius:10px;font-size:13px;font-weight:700;text-decoration:none;display:flex;align-items:center;gap:8px;box-shadow:0 4px 15px rgba(17,153,204,0.3);">
-            <i class="fa-solid fa-map-location-dot"></i> فتح في خرائط جوجل
-          </a>
-        </div>
+    <div class="map-container reveal reveal-delay-2" style="position:relative;">
+      <iframe
+        src="https://www.openstreetmap.org/export/embed.html?bbox=5.522621%2C36.695791%2C5.562621%2C36.715791&layer=mapnik&marker=36.705791%2C5.542621"
+        style="width:100%;height:100%;border:none;display:block;"
+        title="موقع المخيم الصيفي تازة"
+        loading="lazy"
+        allowfullscreen>
+      </iframe>
+      <!-- Overlay button -->
+      <div style="position:absolute;bottom:16px;left:50%;transform:translateX(-50%);z-index:10;">
+        <a href="https://www.google.com/maps?q=36.705791,5.542621"
+           target="_blank" rel="noopener noreferrer"
+           style="background:var(--blue-ocean);color:white;padding:10px 22px;border-radius:10px;font-size:13px;font-weight:700;text-decoration:none;display:flex;align-items:center;gap:8px;box-shadow:0 4px 20px rgba(17,153,204,0.4);white-space:nowrap;backdrop-filter:blur(4px);">
+          <i class="fa-solid fa-map-location-dot"></i> فتح في خرائط جوجل
+        </a>
       </div>
     </div>
   </div>
@@ -1374,6 +1474,72 @@
     document.getElementById('mobileMenu').classList.toggle('open');
   }
 
+  // ─── Hero card video controller ───
+  const heroVid      = document.getElementById('heroVid');
+  const vidPlayIcon  = document.getElementById('vidPlayIcon');
+  const vidFill      = document.getElementById('vidFill');
+  const vidTime      = document.getElementById('vidTime');
+  const vidMuteIcon  = document.getElementById('vidMuteIcon');
+  const vidBigPlay   = document.getElementById('vidBigPlay');
+  const vidProgress  = document.getElementById('vidProgress');
+
+  // Start muted & playing (browser policy)
+  heroVid.muted = true;
+  heroVid.play().then(() => {
+    vidPlayIcon.className = 'fa-solid fa-pause';
+    vidBigPlay.classList.remove('show');
+  }).catch(() => {});
+
+  function toggleHeroVid() {
+    if (heroVid.paused) {
+      heroVid.play();
+      vidPlayIcon.className = 'fa-solid fa-pause';
+      vidBigPlay.classList.remove('show');
+    } else {
+      heroVid.pause();
+      vidPlayIcon.className = 'fa-solid fa-play';
+      vidBigPlay.classList.add('show');
+    }
+  }
+
+  function toggleMute() {
+    heroVid.muted = !heroVid.muted;
+    vidMuteIcon.className = heroVid.muted
+      ? 'fa-solid fa-volume-xmark'
+      : 'fa-solid fa-volume-high';
+  }
+
+  function goFullscreen() {
+    const wrap = document.getElementById('heroVideoWrap');
+    if (wrap.requestFullscreen)            wrap.requestFullscreen();
+    else if (wrap.webkitRequestFullscreen) wrap.webkitRequestFullscreen();
+  }
+
+  function vidSeek(e) {
+    const rect = vidProgress.getBoundingClientRect();
+    const pct  = (e.clientX - rect.left) / rect.width;
+    heroVid.currentTime = pct * heroVid.duration;
+  }
+
+  function fmtTime(s) {
+    const m = Math.floor(s / 60);
+    const ss = String(Math.floor(s % 60)).padStart(2, '0');
+    return `${m}:${ss}`;
+  }
+
+  heroVid.addEventListener('timeupdate', () => {
+    if (!heroVid.duration) return;
+    const pct = (heroVid.currentTime / heroVid.duration) * 100;
+    vidFill.style.width = pct + '%';
+    vidTime.textContent = fmtTime(heroVid.currentTime);
+  });
+
+  heroVid.addEventListener('ended', () => {
+    vidPlayIcon.className = 'fa-solid fa-play';
+    vidBigPlay.classList.add('show');
+  });
+
+
   // ─── Hero particles ───
   const pContainer = document.getElementById('particles');
   for (let i = 0; i < 18; i++) {
@@ -1398,16 +1564,29 @@
 
   // ─── Lightbox ───
   function openLightbox(item) {
-    const bg = item.querySelector('.gallery-bg');
-    const style = window.getComputedStyle(bg);
-    const lb = document.getElementById('lightbox');
-    const img = document.getElementById('lightboxImg');
-    img.style.background = style.background;
-    img.style.backgroundSize = 'cover';
-    img.style.backgroundPosition = 'center';
+    const type = item.dataset.type || 'image';
+    const src  = item.dataset.src  || '';
+    const lb   = document.getElementById('lightbox');
+    const img  = document.getElementById('lightboxImg');
+    const vid  = document.getElementById('lightboxVideo');
+    const vsrc = document.getElementById('lightboxVideoSrc');
+
+    if (type === 'video') {
+      img.style.display = 'none';
+      vsrc.src = src;
+      vid.load();
+      vid.style.display = 'block';
+    } else {
+      vid.pause();
+      vid.style.display = 'none';
+      img.src = src;
+      img.style.display = 'block';
+    }
     lb.classList.add('open');
   }
   function closeLightbox() {
+    const vid = document.getElementById('lightboxVideo');
+    vid.pause();
     document.getElementById('lightbox').classList.remove('open');
   }
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });

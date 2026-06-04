@@ -607,14 +607,14 @@
   #testimonials { background: white; overflow: hidden; }
   .testimonials-slider { max-width: 1200px; margin: 0 auto; position: relative; }
   .testimonials-track {
-    display: flex; gap: 24px;
+    display: flex;
     animation: slide-testimonials 20s linear infinite;
     width: max-content;
   }
   .testimonials-track:hover { animation-play-state: paused; }
   @keyframes slide-testimonials {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
+    0% { transform: translateX(50%); }
+    100% { transform: translateX(0); }
   }
   .testimonial-card {
     min-width: 350px; background: var(--light-bg);
@@ -622,6 +622,7 @@
     border: 1px solid rgba(0,166,178,0.15);
     box-shadow: var(--shadow-card);
     flex-shrink: 0; transition: var(--transition);
+    margin: 0 12px;
   }
   .testimonial-card:hover { box-shadow: var(--shadow-hover); transform: translateY(-5px); }
   .test-stars { color: var(--yellow-sun); font-size: 18px; margin-bottom: 16px; }
@@ -1302,6 +1303,22 @@
         <div class="test-author">
           <div class="test-avatar" style="background:linear-gradient(135deg,var(--yellow-sun),var(--orange-warm));">م</div>
           <div><div class="test-name">محمد شريف</div><div class="test-location"><i class="fa-solid fa-location-dot" style="margin-left:4px;color:var(--cyan-sky);"></i> قسنطينة</div></div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="test-stars">★★★★★</div>
+        <p class="test-text">المسابح رائعة والأنشطة البحرية ممتازة. أطفالنا لم يريدوا المغادرة! سنعود بالتأكيد وننصح كل من يبحث عن راحة حقيقية.</p>
+        <div class="test-author">
+          <div class="test-avatar" style="background:linear-gradient(135deg,#9b59b6,#6c3483);">ن</div>
+          <div><div class="test-name">نور الدين حمزة</div><div class="test-location"><i class="fa-solid fa-location-dot" style="margin-left:4px;color:var(--cyan-sky);"></i> عنابة</div></div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="test-stars">★★★★★</div>
+        <p class="test-text">احتفلنا بعيد ميلاد ابنتنا في مخيم تازة وكانت مفاجأة رائعة. الطاقم نظّم كل شيء بااحترافية عالية. شكراً جزيلاً!</p>
+        <div class="test-author">
+          <div class="test-avatar" style="background:linear-gradient(135deg,#e74c3c,#c0392b);">س</div>
+          <div><div class="test-name">سلمى بوعلام</div><div class="test-location"><i class="fa-solid fa-location-dot" style="margin-left:4px;color:var(--cyan-sky);"></i> تيزي وزو</div></div>
         </div>
       </div>
     </div>
